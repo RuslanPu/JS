@@ -49,19 +49,19 @@ public class AdminController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/edit/{id}",  method = RequestMethod.GET)
-	public ModelAndView editPage(@PathVariable("id") Long id) {
-		User user = service.getUserById(id);
-		List<Role> listRoles = service.getAllRole();
-
-		ModelAndView modelAndView = new ModelAndView();
-
-		modelAndView.setViewName("admin/editPage");
-		modelAndView.addObject("listRoles", listRoles);
-		modelAndView.addObject("user", user);
-
-		return modelAndView;
-	}
+//	@RequestMapping(value = "/edit/{id}",  method = RequestMethod.GET)
+//	public ModelAndView editPage(@PathVariable("id") Long id) {
+//		User user = service.getUserById(id);
+//		List<Role> listRoles = service.getAllRole();
+//
+//		ModelAndView modelAndView = new ModelAndView();
+//
+//		modelAndView.setViewName("admin/editPage");
+//		modelAndView.addObject("listRoles", listRoles);
+//		modelAndView.addObject("user", user);
+//
+//		return modelAndView;
+//	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView editUser(@ModelAttribute("user") User user, @RequestParam("checkboxRole") String[] checkboxRoles) {

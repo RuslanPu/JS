@@ -5,6 +5,7 @@ import com.javamentor.js.model.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,5 +22,11 @@ public class UserController {
         user.setRoles(rolesUser);
         model.addAttribute("user", user);
         return "user/userPage";
+
+    }
+
+    @GetMapping("/test")
+    public String getAjax() {
+        return "user/testAjax";
     }
 }
