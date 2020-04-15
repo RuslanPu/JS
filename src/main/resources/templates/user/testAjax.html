@@ -63,9 +63,14 @@
             success : function(data) {
                 console.log(data);
 
-                // $(".edit .name").attr("value", data.name);
-                // $(".edit .id").attr("value", data.id);
-
+                $(".edit .name").attr("value", data.user.name);
+                $(".edit .id").attr("value", data.user.id);
+                $(".edit .password").attr("value", data.user.password);
+                var objSelect = $(".edit .roles");
+                // $(objSelect).append($("<option></option>", {value: data.allRoles[0].name, text: data.allRoles[0].name}));
+                $.each(data.allRoles, function (key, value) {
+                        $(objSelect).append($("<option></option>", {value: value.name, text: value.name}));
+                });
             }
         });
 
@@ -120,14 +125,9 @@
                             <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
                                 Role</p>
                             <select th:name="checkboxRole" multiple
-                                    class="form-control"
+                                    class="roles form-control"
                                     id="exampleFormControlSelect3"
                                     style="height: 60px">
-                                <option
-                                        value=""
-                                        text=""
-                                        ></option>
-
                             </select>
                         </div>
                     </form>
