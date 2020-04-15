@@ -6,6 +6,15 @@ import java.util.Objects;
 public class JsonObject {
     private User user;
     private List<Role> allRoles;
+    private boolean unicEmail;
+
+    public boolean isUnicEmail() {
+        return unicEmail;
+    }
+
+    public void setUnicEmail(boolean unicEmail) {
+        this.unicEmail = unicEmail;
+    }
 
     public JsonObject() {}
 

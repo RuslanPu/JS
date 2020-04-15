@@ -46,4 +46,20 @@ public class CrudController {
         return new ResponseEntity<JsonObject>(jsonObject, HttpStatus.OK);
     }
 
+    @PostMapping("/user/checkEmail")
+    public ResponseEntity<JsonObject> checkEmail(@RequestBody User user) {
+//        Long id = user.getId();
+        String email = user.getEmail();
+//        User userById = service.getUserById(id);
+        boolean unicEmail;
+        if (!service.unicEmail(email)) {
+            unicEmail = false;
+        } else { unicEmail = true; }
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.setUnicEmail(unicEmail);
+
+        return new ResponseEntity<JsonObject>(jsonObject, HttpStatus.OK);
+    }
+
 }

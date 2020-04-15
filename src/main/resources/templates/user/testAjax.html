@@ -12,44 +12,76 @@
     <!-- JQuery library -->
 </header>
 <body>
-<h2>Hello World!</h2>
-<button onclick="myFunction()">Send request</button>
-<p id="paragraph"></p>
-<input type="text" class="input">
-<script type="text/javascript">
-    function myFunction() {
-        //function which send ajax request to the server
+<form action="post" class="test">
+    <div class="error" ></div>
 
-        $.ajax({
-            url : '/user/request',
-            datatype : 'json',
-            type : "post",
-            contentType : "application/json",
-            data : JSON.stringify({
-                email : 'hi@w.o',
-                name : 'Hi there',
-                id : 1
-            }),
-            success : function(data) {
-                console.log(data);
-                $("#paragraph").text(data.message);
-                alert(data.name);
+    <input type="text" name="name">
+    <input type="text" name="email">
+    <div class="form-group">
+        <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+            Role</p>
+        <select th:name="checkboxRole" multiple
+                class="choose form-control"
+                style="height: 60px">
+            <option value="1">1</option>
+            <option value="1">2</option>
+        </select>
+    </div>
+    <button type="button" id="editSubmit1">Send</button>
+</form>
 
-            }
-        });
-    }
-</script>
 <!-- Button trigger modal -->
 <button type="button" id="test" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id="82">
     Test js
 </button>
 <script type="text/javascript">
+    var globalDataUser;
+    $('#editSubmit1').click(function() {
+        arr = $(".choose option");
+        var name = $(".test input[name='name']").val();
+        var email = $(".test input[name='email']").val();
+        if (name == "" || email =="") {
+            $(".error").text("Error");
+        }
+
+        if(!unicEmail(email) ^ (email == globalDataUser.email)) {
+            alert("not unic!");
+        }
+        checkOption(arr);
+        function checkOption(arr) {
+            var i = 0;
+            $(arr).each( function () {
+                if ($(this).prop('selected') == true) {
+                    i++
+                }
+            });
+            if( i == 0 ) {
+                return false;
+            } else { return true ;}
+        }
+
+    });
+
+    function unicEmail(email) {
+        //function which send ajax request to the server
+        $.ajax({
+            url : '/user/checkEmail',
+            datatype : 'json',
+            type : "post",
+            contentType : "application/json",
+            data : JSON.stringify({
+                email : email
+            }),
+            success : function(data) {
+                console.log(data);
+                return data.unicEmail;
+            }
+        });
+    }
+
     $('#test').click(function () {
         var id = $("#test").attr('data-id');
         GetAjax(id);
-        // $(".edit .name").attr("value", name);
-        // $(".edit .password").attr("value", pass);
-
     });
     function GetAjax(id) {
         $.ajax({
@@ -62,17 +94,17 @@
             }),
             success : function(data) {
                 console.log(data);
-
+                globalDataUser = data.user;
                 $(".edit .name").attr("value", data.user.name);
                 $(".edit .id").attr("value", data.user.id);
                 $(".edit .password").attr("value", data.user.password);
                 var objSelect = $(".edit .roles");
-                // $(objSelect).append($("<option></option>", {value: data.allRoles[0].name, text: data.allRoles[0].name}));
+
                 $.each(data.allRoles, function (key, value) {
                         $(objSelect).append($("<option></option>", {value: value.name, text: value.name}));
                 });
 
-                // selected($(".roles option"),"ROLE_USER");
+
                 $.each(data.user.roles, function(index, value) {
                     selected($(".roles option"), value.name);
                 })
@@ -86,9 +118,6 @@
                 }
             });
         }
-
-
-
     }
 </script>
 
@@ -150,7 +179,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="editSubmit">Edit</button>
             </div>
         </div>
     </div>
