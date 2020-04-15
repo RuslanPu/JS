@@ -1,11 +1,15 @@
 package com.javamentor.js.controller;
 
+import com.javamentor.js.model.JsonObject;
+import com.javamentor.js.model.Role;
 import com.javamentor.js.model.User;
 import com.javamentor.js.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping()
@@ -31,10 +35,15 @@ public class CrudController {
     }
 
     @PostMapping("/user/requestById")
-    public ResponseEntity<User> getUserById(@RequestBody User user) {
+    public ResponseEntity<JsonObject> getUserById(@RequestBody User user) {
         Long id = user.getId();
-        User responseUser = service.getUserById(id);
-        return new ResponseEntity<User>(responseUser, HttpStatus.OK);
+        User userById = service.getUserById(id);
+        List<Role> allRoles = service.getAllRole();
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.setUser(userById);
+        jsonObject.setAllRoles(allRoles);
+
+        return new ResponseEntity<JsonObject>(jsonObject, HttpStatus.OK);
     }
 
 }

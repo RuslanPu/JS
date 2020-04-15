@@ -63,8 +63,8 @@
             success : function(data) {
                 console.log(data);
 
-                $(".edit .name").attr("value", data.name);
-                $(".edit .id").attr("value", data.id);
+                // $(".edit .name").attr("value", data.name);
+                // $(".edit .id").attr("value", data.id);
 
             }
         });
@@ -123,10 +123,10 @@
                                     class="form-control"
                                     id="exampleFormControlSelect3"
                                     style="height: 60px">
-                                <option th:each=""
-                                        th:value=""
-                                        th:text=""
-                                        th:selected=""></option>
+                                <option
+                                        value=""
+                                        text=""
+                                        ></option>
 
                             </select>
                         </div>
