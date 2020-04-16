@@ -35,7 +35,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">User table</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="afterAdd">
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">New User</a>
                     </li>
 
@@ -166,7 +166,7 @@
                                         <div class="form-group">
                                             <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Role</p>
                                             <select  th:name="checkboxRole"  multiple class="roles form-control" id="exampleFormControlSelect2" style="height: 60px" >
-                                                <option th:each="role : ${listRoles}"  th:value="${role.name}" th:text="${role.name}"></option>
+<!--                                                <option th:each="role : ${listRoles}"  th:value="${role.name}" th:text="${role.name}"></option>-->
 
                                             </select>
                                         </div>

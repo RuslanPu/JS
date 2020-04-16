@@ -1,3 +1,23 @@
+$('#afterAdd').click(function() {
+    $('.add .roles').find('option').remove();
+    $.ajax({
+        url: '/admin/add',
+        datatype: 'json',
+        type: "get",
+        contentType: "application/json",
+        data: JSON,
+        success: function (data) {
+            console.log(data);
+            var objSelect = $(".add .roles");
+
+            $.each(data.allRoles, function (key, value) {
+                $(objSelect).append($("<option></option>", {value: value.name, text: value.name}));
+            });
+        }
+    });
+})
+
+
 $('.buttonAddUser').click(function () {
     var roles = new Array;
     $('.add .roles option').each(function () {

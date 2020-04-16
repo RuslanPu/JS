@@ -103,14 +103,14 @@ public class AdminController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value="/add", method = RequestMethod.GET)
-	public ModelAndView addPage() {
-		List<Role> listRoles = service.getAllRole();
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("listRoles", listRoles);
-		modelAndView.setViewName("admin/addPage");
-		return modelAndView;
-	}
+//	@RequestMapping(value="/add", method = RequestMethod.GET)
+//	public ModelAndView addPage() {
+//		List<Role> listRoles = service.getAllRole();
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.addObject("listRoles", listRoles);
+//		modelAndView.setViewName("admin/addPage");
+//		return modelAndView;
+//	}
 
 //	@RequestMapping(value = "/add", method = RequestMethod.POST)
 //	public ModelAndView addUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName, @RequestParam("age") Integer age, @RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("checkboxRole") String[] checkboxRoles) {

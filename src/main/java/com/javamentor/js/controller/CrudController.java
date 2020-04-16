@@ -17,6 +17,15 @@ public class CrudController {
     @Autowired
     private UserService service;
 
+    @GetMapping("/admin/add")
+    public ResponseEntity<JsonObject> getRoles() {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.setAllRoles(service.getAllRole());
+
+        return new ResponseEntity<JsonObject>(jsonObject, HttpStatus.OK);
+    }
+
     @PostMapping("/user/requestById")
     public ResponseEntity<JsonObject> getUserById(@RequestBody User user) {
         Long id = user.getId();
@@ -28,6 +37,8 @@ public class CrudController {
 
         return new ResponseEntity<JsonObject>(jsonObject, HttpStatus.OK);
     }
+
+
 
     @PostMapping("/admin/delete")
     public String deleteUser(@RequestBody User user) {
