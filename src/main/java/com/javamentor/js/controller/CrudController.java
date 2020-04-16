@@ -17,23 +17,6 @@ public class CrudController {
     @Autowired
     private UserService service;
 
-    @GetMapping("/admin/edit/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
-        User user = service.getUserById(id);
-        return ResponseEntity.ok(
-              user
-        );
-    }
-    @PostMapping("/user/request")
-    public ResponseEntity<User> getUser(@RequestBody User user) {
-        System.out.println(user);
-        User responseUser = new User();
-        responseUser.setAge(20);
-        responseUser.setName("Georgiy");
-        responseUser.setEmail("g@m.ru");
-    return new ResponseEntity<User>(responseUser, HttpStatus.OK);
-    }
-
     @PostMapping("/user/requestById")
     public ResponseEntity<JsonObject> getUserById(@RequestBody User user) {
         Long id = user.getId();
@@ -44,6 +27,17 @@ public class CrudController {
         jsonObject.setAllRoles(allRoles);
 
         return new ResponseEntity<JsonObject>(jsonObject, HttpStatus.OK);
+    }
+
+    @PostMapping("/admin/updateUser")
+    public String updateUser(@RequestBody User user) {
+        System.out.println(user.getRoles());
+        String[] roles = new String[user.getRoles().size()];
+        for (int i = 0 ; i < user.getRoles().size(); i++) {
+            roles[i] = user.getRoles().get(i).getName();
+        }
+       service.edit(user, roles);
+        return "good";
     }
 
     @PostMapping("/user/checkEmail")
@@ -61,5 +55,7 @@ public class CrudController {
 
         return new ResponseEntity<JsonObject>(jsonObject, HttpStatus.OK);
     }
+
+
 
 }

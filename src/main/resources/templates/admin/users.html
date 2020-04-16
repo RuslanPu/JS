@@ -319,8 +319,6 @@
     </div>
 </div>
 <script type="text/javascript">
-    var globalDataUser = new Object();
-    var globalAllRoles = new Object();
 
     var userAfterSubmit = new Object();
 
@@ -432,6 +430,29 @@
         // if(!checkOption(arr)) {
         //     $(".error").text("Choose role");
         // }
+
+        $.ajax({
+            url : '/admin/updateUser',
+            datatype : 'json',
+            type : 'post',
+            contentType : "application/json",
+            data : JSON.stringify({
+                id : id,
+                name : name,
+                lastName : lastName,
+                age : age,
+                password : password,
+                email : email,
+                roles : arr1
+
+            }),
+            success: function(data) {
+                console.log(data);
+            }
+
+
+
+        });
         userAfterSubmit['name'] = name;
         userAfterSubmit['lastName'] = lastName;
         userAfterSubmit['email'] = email;
