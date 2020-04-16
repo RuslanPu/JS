@@ -76,120 +76,7 @@
                                                 Edit
                                             </button>
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form  method="post" th:action="@{/admin/edit}" class="edit form-signin pt-md-1" >
-                                                            <div class="row">
 
-                                                                    <div class="mx-auto">
-                                                                        <div class="form-group">
-                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
-                                                                                ID</p>
-                                                                            <input class="id form-control"
-                                                                                   name="id"
-                                                                                    readonly>
-                                                                        </div>
-
-
-                                                                        <div class="form-group">
-                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
-                                                                                First name</p>
-                                                                            <input
-                                                                                    type="text"
-                                                                                    class="name form-control"
-                                                                                    name="name"
-                                                                                    autofocus="autofocus"
-                                                                                    placeholder="First name"
-                                                                                    required
-
-                                                                            >
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
-                                                                                Last name</p>
-                                                                            <input
-                                                                                    type="text"
-                                                                                    class="lastName form-control"
-                                                                                    name="lastName"
-                                                                                    autofocus="autofocus"
-                                                                                    placeholder="Last name"
-                                                                                    required
-                                                                            >
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
-                                                                                Age</p>
-                                                                            <input
-                                                                                    type="text"
-                                                                                    class="age form-control"
-                                                                                    name="age"
-                                                                                    autofocus="autofocus"
-                                                                                    placeholder="Age"
-                                                                                    required
-                                                                            >
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
-                                                                                Email</p>
-                                                                            <input
-                                                                                    type="email"
-                                                                                    class="email form-control"
-                                                                                    name="email"
-                                                                                    autofocus="autofocus"
-                                                                                    placeholder="Email"
-                                                                                    required
-                                                                            >
-                                                                        </div>
-
-                                                                        <div class="form-group">
-                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
-                                                                                Password</p>
-                                                                            <input
-                                                                                    type="text"
-                                                                                    class="password form-control"
-                                                                                    name="password"
-                                                                                    autofocus="autofocus"
-                                                                                    placeholder="Password"
-                                                                                    required
-                                                                            >
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
-                                                                                Role</p>
-                                                                            <select th:name="checkboxRole" multiple
-                                                                                    class="roles form-control"
-                                                                                    id="exampleFormControlSelect3"
-                                                                                    style="height: 60px">
-
-
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-
-
-
-
-                                                            </div>
-                                                                <div class="d-flex justify-content-end">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                    <button type="button" class="btn btn-primary mx-2" id="editSubmit">Edit</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                         </td>
                                         <td>
@@ -317,6 +204,120 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form  method="post" th:action="@{/admin/edit}" class="edit form-signin pt-md-1" >
+                    <div class="row">
+
+                        <div class="mx-auto">
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    ID</p>
+                                <input class="id form-control"
+                                       name="id"
+                                       readonly>
+                            </div>
+
+
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    First name</p>
+                                <input
+                                        type="text"
+                                        class="name form-control"
+                                        name="name"
+                                        autofocus="autofocus"
+                                        placeholder="First name"
+                                        required
+
+                                >
+                            </div>
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    Last name</p>
+                                <input
+                                        type="text"
+                                        class="lastName form-control"
+                                        name="lastName"
+                                        autofocus="autofocus"
+                                        placeholder="Last name"
+                                        required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    Age</p>
+                                <input
+                                        type="text"
+                                        class="age form-control"
+                                        name="age"
+                                        autofocus="autofocus"
+                                        placeholder="Age"
+                                        required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    Email</p>
+                                <input
+                                        type="email"
+                                        class="email form-control"
+                                        name="email"
+                                        autofocus="autofocus"
+                                        placeholder="Email"
+                                        required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    Password</p>
+                                <input
+                                        type="text"
+                                        class="password form-control"
+                                        name="password"
+                                        autofocus="autofocus"
+                                        placeholder="Password"
+                                        required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    Role</p>
+                                <select th:name="checkboxRole" multiple
+                                        class="roles form-control"
+                                        id="exampleFormControlSelect3"
+                                        style="height: 60px">
+
+
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary mx-2" id="editSubmit">Edit</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     var globalDataUser = new Object();
     var globalAllRoles = new Object();
@@ -357,7 +358,6 @@
             }),
             success : function(data) {
                 console.log(data);
-
                 $(".edit .name").attr("value", data.user.name);
                 $(".edit .id").attr("value", data.user.id);
                 $(".edit .lastName").attr("value", data.user.lastName);
@@ -375,9 +375,6 @@
                     selected($(".roles option"), value.name);
                 });
 
-                $.each(data.user.roles, function (index, value) {
-                    selected($(".roles option"), value.name);
-                });
 
             }
         });
@@ -447,6 +444,7 @@
     });
     // get id
     $('.buttonEdit').click(function () {
+        $('.roles').find('option').remove();
         var id = $(this).attr('data');
         getUserById(id);
     });
