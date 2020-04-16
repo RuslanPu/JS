@@ -38,6 +38,16 @@ public class CrudController {
         return  "delete";
     }
 
+    @PostMapping("/admin/add")
+    public String addUser(@RequestBody User user) {
+        String[] roles = new String[user.getRoles().size()];
+        for (int i = 0 ; i < user.getRoles().size(); i++) {
+            roles[i] = user.getRoles().get(i).getName();
+        }
+        service.add(user, roles);
+        return  "add";
+    }
+
     @PostMapping("/admin/updateUser")
     public String updateUser(@RequestBody User user) {
         System.out.println(user.getRoles());

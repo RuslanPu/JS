@@ -112,14 +112,14 @@ public class AdminController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView addUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName, @RequestParam("age") Integer age, @RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("checkboxRole") String[] checkboxRoles) {
-
-		User user = new User(name, lastName, age, password, email);
-
-		List<Role> listRoles = service.getAllRole();
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/admin/users");
+//	@RequestMapping(value = "/add", method = RequestMethod.POST)
+//	public ModelAndView addUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName, @RequestParam("age") Integer age, @RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("checkboxRole") String[] checkboxRoles) {
+//
+//		User user = new User(name, lastName, age, password, email);
+//
+//		List<Role> listRoles = service.getAllRole();
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.setViewName("redirect:/admin/users");
 //		if (checkboxRoles.length < 2) {
 //			modelAndView.addObject("error","Choose the role or roles");
 //
@@ -140,9 +140,9 @@ public class AdminController {
 //			return modelAndView;
 //		}
 
-		service.add(user, checkboxRoles);
-		return modelAndView;
-	}
+//		service.add(user, checkboxRoles);
+//		return modelAndView;
+//	}
 
 //	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 //	public String deleteUser(@PathVariable("id") Long id) {
