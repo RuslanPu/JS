@@ -30,11 +30,29 @@
     <button type="button" id="editSubmit1">Send</button>
 </form>
 
+<table class="table">
+    <tr>
+        <td id="td">2</td>
+        <td>4</td>
+        <td>6</td>
+    </tr>
+</table>
+<button type="button" id="testChange">testchange</button>
+
 <!-- Button trigger modal -->
 <button type="button" id="test" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id="82">
     Test js
 </button>
 <script type="text/javascript">
+    $('#testChange').click(function () {
+        alert("work");
+        var text = 4;
+
+        var element = $('.table td').filter(function() {
+            return $(this).text() == text;
+        }).parent().children(':eq(1)').text("good");
+
+    });
     var globalDataUser;
 
     function checkOption(arr) {
