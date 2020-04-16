@@ -36,54 +36,20 @@
 </button>
 <script type="text/javascript">
     var globalDataUser;
-    $('#editSubmit1').click(function() {
-        arr = $(".choose option");
-        var name = $(".test input[name='name']").val();
-        var email = $(".test input[name='email']").val();
-        if (name == "" || email =="") {
-            $(".error").text("Error");
-        }
 
-        if(!unicEmail(email) ^ (email == globalDataUser.email)) {
-            alert("not unic!");
-        }
-        checkOption(arr);
-        function checkOption(arr) {
-            var i = 0;
-            $(arr).each( function () {
-                if ($(this).prop('selected') == true) {
-                    i++
-                }
-            });
-            if( i == 0 ) {
-                return false;
-            } else { return true ;}
-        }
-
-    });
-
-    function unicEmail(email) {
-        //function which send ajax request to the server
-        $.ajax({
-            url : '/user/checkEmail',
-            datatype : 'json',
-            type : "post",
-            contentType : "application/json",
-            data : JSON.stringify({
-                email : email
-            }),
-            success : function(data) {
-                console.log(data);
-                return data.unicEmail;
+    function checkOption(arr) {
+        var i = 0;
+        $(arr).each( function () {
+            if ($(this).prop('selected') == true) {
+                i++
             }
         });
+        if( i == 0 ) {
+            return false;
+        } else { return true ;}
     }
 
-    $('#test').click(function () {
-        var id = $("#test").attr('data-id');
-        GetAjax(id);
-    });
-    function GetAjax(id) {
+    function getUserById(id) {
         $.ajax({
             url : '/user/requestById',
             datatype : 'json',
@@ -101,7 +67,7 @@
                 var objSelect = $(".edit .roles");
 
                 $.each(data.allRoles, function (key, value) {
-                        $(objSelect).append($("<option></option>", {value: value.name, text: value.name}));
+                    $(objSelect).append($("<option></option>", {value: value.name, text: value.name}));
                 });
 
 
@@ -119,6 +85,45 @@
             });
         }
     }
+    function unicEmail(email) {
+        //function which send ajax request to the server
+        $.ajax({
+            url : '/user/checkEmail',
+            datatype : 'json',
+            type : "post",
+            contentType : "application/json",
+            data : JSON.stringify({
+                email : email
+            }),
+            success : function(data) {
+                console.log(data);
+                return data.unicEmail;
+            }
+        });
+    }
+    //valid data field
+    $('#editSubmit1').click(function() {
+        arr = $(".choose option");
+        var name = $(".test input[name='name']").val();
+        var email = $(".test input[name='email']").val();
+
+        if(unicEmail(email)) {
+            $(".error").text("Not unic");
+        } else {
+
+        }
+
+        if(!checkOption(arr)) {
+            $(".error").text("Choose role");
+        }
+
+    });
+    //get id
+    $('#test').click(function () {
+        var id = $("#test").attr('data-id');
+        getUserById(id);
+    });
+
 </script>
 
 <!-- Modal -->

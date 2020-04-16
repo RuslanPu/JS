@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Admin panel</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+
 <div class="bg-dark d-flex flex-row align-content-center">
     <div class="bg-dark pt-2 pl-3">
         <p class="text-light d-inline"><b th:text="${user.email}"></b> with roles: <p th:each="role : ${user.roles}" th:text="${role.name}" class="text-light d-inline pr-1"></p></p>
@@ -70,12 +72,12 @@
                                         </td>
                                         <td>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-info" data-toggle="modal" th:data-target="'#exampleModal'+${user.id}">
+                                            <button type="button"  class="buttonEdit btn btn-info" data-toggle="modal" data-target="#exampleModal" th:data="${user.id}">
                                                 Edit
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" th:id="'exampleModal'+${user.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -85,15 +87,16 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form id="edit" method="post" th:action="@{/admin/edit}" class="form-signin pt-md-1" >
+                                                            <form  method="post" th:action="@{/admin/edit}" class="edit form-signin pt-md-1" >
                                                             <div class="row">
 
                                                                     <div class="mx-auto">
                                                                         <div class="form-group">
                                                                             <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
                                                                                 ID</p>
-                                                                            <input class="form-control" th:name="id"
-                                                                                   th:value="${user.id}" readonly>
+                                                                            <input class="id form-control"
+                                                                                   name="id"
+                                                                                    readonly>
                                                                         </div>
 
 
@@ -102,11 +105,12 @@
                                                                                 First name</p>
                                                                             <input
                                                                                     type="text"
-                                                                                    class="form-control"
-                                                                                    th:name="name"
+                                                                                    class="name form-control"
+                                                                                    name="name"
                                                                                     autofocus="autofocus"
                                                                                     placeholder="First name"
-                                                                                    th:value="${user.name}"
+                                                                                    required
+
                                                                             >
                                                                         </div>
                                                                         <div class="form-group">
@@ -114,11 +118,11 @@
                                                                                 Last name</p>
                                                                             <input
                                                                                     type="text"
-                                                                                    class="form-control"
-                                                                                    th:name="lastName"
+                                                                                    class="lastName form-control"
+                                                                                    name="lastName"
                                                                                     autofocus="autofocus"
                                                                                     placeholder="Last name"
-                                                                                    th:value="${user.lastName}"
+                                                                                    required
                                                                             >
                                                                         </div>
                                                                         <div class="form-group">
@@ -126,11 +130,11 @@
                                                                                 Age</p>
                                                                             <input
                                                                                     type="text"
-                                                                                    class="form-control"
-                                                                                    th:name="age"
+                                                                                    class="age form-control"
+                                                                                    name="age"
                                                                                     autofocus="autofocus"
                                                                                     placeholder="Age"
-                                                                                    th:value="${user.age}"
+                                                                                    required
                                                                             >
                                                                         </div>
                                                                         <div class="form-group">
@@ -138,11 +142,11 @@
                                                                                 Email</p>
                                                                             <input
                                                                                     type="email"
-                                                                                    class="form-control"
-                                                                                    th:name="email"
+                                                                                    class="email form-control"
+                                                                                    name="email"
                                                                                     autofocus="autofocus"
                                                                                     placeholder="Email"
-                                                                                    th:value="${user.email}"
+                                                                                    required
                                                                             >
                                                                         </div>
 
@@ -151,24 +155,21 @@
                                                                                 Password</p>
                                                                             <input
                                                                                     type="text"
-                                                                                    class="form-control"
-                                                                                    th:name="password"
+                                                                                    class="password form-control"
+                                                                                    name="password"
                                                                                     autofocus="autofocus"
                                                                                     placeholder="Password"
-                                                                                    th:value="${user.password}"
+                                                                                    required
                                                                             >
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
                                                                                 Role</p>
                                                                             <select th:name="checkboxRole" multiple
-                                                                                    class="form-control"
+                                                                                    class="roles form-control"
                                                                                     id="exampleFormControlSelect3"
                                                                                     style="height: 60px">
-                                                                                <option th:each="role : ${listRoles}"
-                                                                                        th:value="${role.name}"
-                                                                                        th:text="${role.name}"
-                                                                                        th:selected="${user.roles.contains(role)}"></option>
+
 
                                                                             </select>
                                                                         </div>
@@ -180,7 +181,7 @@
                                                             </div>
                                                                 <div class="d-flex justify-content-end">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary mx-2" >Edit</button>
+                                                                    <button type="button" class="btn btn-primary mx-2" id="editSubmit">Edit</button>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -316,7 +317,142 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    var globalDataUser = new Object();
+    var globalAllRoles = new Object();
+
+    var userAfterSubmit = new Object();
+
+
+    function addCheckRoleInUserRoles(arr) {
+        var arr1 = new Array();
+        $(arr).each( function (index, value) {
+            if ($(this).prop('selected') == true) {
+                arr1.push($(this).val());
+            }
+        });
+        return arr1;
+
+    }
+    function checkOption(arr) {
+        var i = 0;
+        $(arr).each( function () {
+            if ($(this).prop('selected') == true) {
+                i++
+            }
+        });
+        if( i == 0 ) {
+            return false;
+        } else { return true ;}
+    }
+
+    function getUserById(id) {
+        $.ajax({
+            url : '/user/requestById',
+            datatype : 'json',
+            type : "post",
+            contentType : "application/json",
+            data : JSON.stringify({
+                id : id
+            }),
+            success : function(data) {
+                console.log(data);
+
+                $(".edit .name").attr("value", data.user.name);
+                $(".edit .id").attr("value", data.user.id);
+                $(".edit .lastName").attr("value", data.user.lastName);
+                $(".edit .age").attr("value", data.user.age);
+                $(".edit .password").attr("value", data.user.password);
+                $(".edit .email").attr("value", data.user.email);
+                var objSelect = $(".edit .roles");
+
+                $.each(data.allRoles, function (key, value) {
+                    $(objSelect).append($("<option></option>", {value: value.name, text: value.name}));
+                });
+
+
+                $.each(data.user.roles, function(index, value) {
+                    selected($(".roles option"), value.name);
+                });
+
+                $.each(data.user.roles, function (index, value) {
+                    selected($(".roles option"), value.name);
+                });
+
+            }
+        });
+        function selected(arr, value) {
+            $(arr).each(function () {
+                if ($(this).val() == value) { // EDITED THIS LINE
+                    $(this).attr("selected", "selected");
+                }
+            });
+        }
+
+    }
+
+
+    function unicEmail(email) {
+        //function which send ajax request to the server
+        $.ajax({
+            url : '/user/checkEmail',
+            datatype : 'json',
+            type : "post",
+            contentType : "application/json",
+            data : JSON.stringify({
+                email : email
+            }),
+            success : function(data) {
+                console.log(data);
+                return data.unicEmail;
+            }
+        });
+    }
+    // valid data field
+    $('#editSubmit').click(function() {
+
+        var arr1 = new Array;
+        $('.edit .roles option').each(function () {
+            if ($(this).prop('selected') == true) {
+                arr1.push($(this).val());
+            }
+        });
+
+
+
+        var name = $(".edit input[name='name']").val();
+        var email = $(".edit input[name='email']").val();
+        var lastName = $(".edit input[name='lastName']").val();
+        var password = $(".edit input[name='password']").val();
+        var id = $(".edit input[name='id']").val();
+        var age = $(".edit input[name='age']").val();
+
+
+        // if(!unicEmail(email)) {
+        //     $(".error").text("Not unic");
+        // }
+        //
+        // if(!checkOption(arr)) {
+        //     $(".error").text("Choose role");
+        // }
+        userAfterSubmit['name'] = name;
+        userAfterSubmit['lastName'] = lastName;
+        userAfterSubmit['email'] = email;
+        userAfterSubmit['password'] = password;
+        userAfterSubmit['age'] = age;
+        userAfterSubmit['id'] = id;
+
+        userAfterSubmit['roles'] = arr1;
+        console.log(userAfterSubmit);
+    });
+    // get id
+    $('.buttonEdit').click(function () {
+        var id = $(this).attr('data');
+        getUserById(id);
+    });
+
+</script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
