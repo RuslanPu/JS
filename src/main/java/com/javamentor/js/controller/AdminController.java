@@ -144,12 +144,12 @@ public class AdminController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public String deleteUser(@PathVariable("id") Long id) {
-		User user = service.getUserById(id);
-		service.delete(user);
-		return "redirect:/admin/users";
-	}
+//	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+//	public String deleteUser(@PathVariable("id") Long id) {
+//		User user = service.getUserById(id);
+//		service.delete(user);
+//		return "redirect:/admin/users";
+//	}
 
 
 	

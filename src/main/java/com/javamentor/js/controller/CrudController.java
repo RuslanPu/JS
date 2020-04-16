@@ -29,6 +29,15 @@ public class CrudController {
         return new ResponseEntity<JsonObject>(jsonObject, HttpStatus.OK);
     }
 
+    @PostMapping("/admin/delete")
+    public String deleteUser(@RequestBody User user) {
+        Long id = user.getId();
+        System.out.println(id);
+        User userDeleted = service.getUserById(id);
+        service.delete(userDeleted);
+        return  "delete";
+    }
+
     @PostMapping("/admin/updateUser")
     public String updateUser(@RequestBody User user) {
         System.out.println(user.getRoles());
@@ -37,7 +46,7 @@ public class CrudController {
             roles[i] = user.getRoles().get(i).getName();
         }
        service.edit(user, roles);
-        return "good";
+        return "update";
     }
 
     @PostMapping("/user/checkEmail")

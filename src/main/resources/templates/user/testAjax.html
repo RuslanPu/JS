@@ -50,7 +50,7 @@
 
         var element = $('.table td').filter(function() {
             return $(this).text() == text;
-        }).parent().children(':eq(1)').text("good");
+        }).parent().remove();
 
     });
     var globalDataUser;
